@@ -1,0 +1,10 @@
+{{ define "main" }}
+
+{{ .Content }}
+
+{{ $bookFileName := .Resources.GetMatch "{*.pdf,*.m4b,*.epub}" }}
+
+
+<a href="/s/books/{{.File.ContentBaseName}}/{{$bookFileName}}">{{$bookFileName}}</a>
+
+{{ end }}
