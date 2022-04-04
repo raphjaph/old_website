@@ -4,11 +4,3 @@ params:
   author: raphael   
   github: https://github.com/raphjaph
   email: raphjaph@protonmail.com
-
-module: 
-# books is very heavy; this mounts the alread existing folder instead of copying
-  mounts: 
-  - source: content
-    target: content
-  - source: /Users/raphael/books
-    target: content/books
