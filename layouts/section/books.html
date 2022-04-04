@@ -1,0 +1,26 @@
+{{ define "main" }}
+
+{{ .Title }}
+{{ .Content }}
+
+<ul class="books" id="books">
+{{ range where .Site.Pages "Section" "books" }}
+    {{ $cover := index (.Resources.ByType "image") 0 }}
+    {{ if $cover }}
+    {{ $cover := $cover.Resize "200x" }}
+    <li>
+    <a href="{{ .Permalink }}"><img src="{{ $cover.RelPermalink }}"></a>
+    </li>
+    {{ end }}
+{{ end }}
+</ul>
+<!-- trying out javascript to shuffle list of books -->
+<script>
+    var books = document.getElementById("bookss");
+    // Fisher-Yates shuffle
+    for (var i = books.children.length; i >= 0; i--) {
+            books.appendChild(books.children[Math.random() * i | 0]);
+        }
+</script>
+
+{{ end }}

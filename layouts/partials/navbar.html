@@ -1,0 +1,24 @@
+{{ block "navbar" . }}
+<hr/>
+<nav>
+<!-- TODO: clean this logic and make a menu in config.yaml? -->
+    {{ with .IsHome }}
+    <a>home</a>
+    {{ else }}
+    <a href="/">home</a>
+    {{ end }}
+
+    {{ if eq .Section "log" }}
+    &bull; <a>log</a>
+    {{ else }}
+    &bull; <a href="/log/">log</a>
+    {{ end }}
+
+    {{ if eq .Section "books" }}
+    &bull; <a>books</a>
+    {{ else }}
+    &bull; <a href="/books/">books</a>
+    {{ end }}
+</nav>
+<hr/>
+{{ end }}

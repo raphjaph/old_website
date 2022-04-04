@@ -1,0 +1,7 @@
+baseURL: /
+params:
+  description: 'just a random site on the interweb' 
+  author: raphael   
+  github: https://github.com/raphjaph
+  email: raphjaph@protonmail.com
+

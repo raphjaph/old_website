@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    {{ block "header" . }}
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content={{ .Site.Params.Author }}>
+        <meta name="description" content={{ .Site.Params.Description }}>
+        
+        <link href="{{ "css/style.css" | absURL }}" rel="stylesheet" type="text/css">
+    </head>
+
+    <header>
+        <h1 style="text-align: left;margin-bottom: 3px"> {{ .Site.Params.Author }} </h1>
+        <ul class="socials">
+            <li><a href="pgp-key.txt"><img src="{{ "images/key.svg" | absURL }}" title="pgp key"/></a></li>
+            <li><a href="mailto:{{ .Site.Params.Email }}"><img src="{{"images/email.svg" |  absURL }}" title="mail"/></li>
+            <li><a href={{ .Site.Params.Github }}><img src="{{ "images/github.svg" |  absURL }}" title="my repo"/></a></li>
+        </ul>
+    </header>
+    {{ end }}
+
+    <body>
+    {{ partial "navbar.html" . }}
+    {{ block "main" . }}{{ end }}
+    {{ partial "navbar.html" . }}
+    </body>
+    
+    <footer>
+        last updated {{ now | time.Format ":date_long" }}<br/>
+        brought to you by <a href="https://github.com/raphjaph/website">this code</a> 
+    </footer>
+
+</html>
