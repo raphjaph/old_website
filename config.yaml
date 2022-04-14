@@ -1,4 +1,4 @@
-baseURL: /
+baseURL: https://raph.8el.eu
 params:
   description: 'just a random site on the interweb' 
   author: raphael   

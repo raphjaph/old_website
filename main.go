@@ -17,9 +17,9 @@ import (
 
 // TODO: get these from config or environment variable
 const (
-	secret    = "JzT+pAqbdYMJAWZonC5Z"
-	address   = "127.0.0.1:3333"
-	staticDir = "/Users/raphael"
+	secret    = "verySecretSecretJzT+pAqbdYMJAWZonC5Z"
+	address   = "0.0.0.0:3333"
+	staticDir = "/s"
 	authPath  = "/s/books/"
 )
 
