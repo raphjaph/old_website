@@ -7,18 +7,52 @@
         <meta name="author" content={{ .Site.Params.Author }}>
         <meta name="description" content={{ .Site.Params.Description }}>
         <title>raphael</title>        
-        <link href="{{ "images/t-rex.png" | absURL }}" rel="icon" sizes="16x16 32x32 48x48 64x64" type="image/png">
-        <link href="{{ "css/style.css" | absURL }}" rel="stylesheet" type="text/css">
+        <link rel="icon" href="{{ "images/t-rex.png" | absURL }}" type="image/png">
+        <link rel="stylesheet" href="{{ "css/style.css" | absURL }}" type="text/css">
     </head>
 
     <header>
-        <h1 style="text-align: left;margin-bottom: 3px"> {{ .Site.Params.Author }} </h1>
-        <ul class="socials">
-            <li><a href="pgp-key.txt"><img src="{{ "images/key.svg" | absURL }}" title="pgp key"/></a></li>
-            <li><a href="mailto:{{ .Site.Params.Email }}"><img src="{{"images/email.svg" |  absURL }}" title="mail"/></li>
-            <li><a href={{ .Site.Params.Github }}><img src="{{ "images/github.svg" |  absURL }}" title="my repo"/></a></li>
-            <li><a href={{ .Site.Params.Telegram }}><img src="{{ "images/telegram.png" | absURL }}" title="please don't spam me"/></a></li>
+
+        <div class="infos">
+        <a href="/"><h1>{{ .Site.Params.Author }}</h1></a>
+        <ul>
+            <li>
+                <a href="pgp-key.txt">
+                    <img src="{{ "images/key.svg" | absURL }}" title="pgp key"/>
+                </a>
+            </li>
+            <li>
+                <a href="mailto:{{ .Site.Params.Email }}">
+                    <img src="{{"images/email.svg" |  absURL }}" title="mail"/>
+                </a>
+            </li>
+            <li>
+                <a href={{ .Site.Params.Github }}>
+                    <img src="{{ "images/github.svg" |  absURL }}" title="my repo"/>
+                </a>
+            </li>
+            <li>
+                <a href={{ .Site.Params.Telegram }}>
+                    <img src="{{ "images/telegram.png" | absURL }}" title="please don't spam me"/>
+                </a>
+            </li>
         </ul>
+        </div>
+        
+
+        <a href="/" title="take me somewhere random">
+        <div class="hexagon">
+            <div class="hexTop"></div>
+            <div class="hexBottom"></div>
+        </div>
+        </a>
+<!---
+        <div class="avatar">
+            <a href="/">
+                <img src="{{ "images/avatar.jpeg" | absURL }}"/> 
+            </a>
+        </div>
+--->
     </header>
     {{ end }}
 
