@@ -7,6 +7,7 @@
         <meta name="author" content={{ .Site.Params.Author }}>
         <meta name="description" content={{ .Site.Params.Description }}>
         <title>raphael</title>        
+        <link href="{{ "images/t-rex.png" | absURL }}" rel="icon" sizes="16x16 32x32 48x48 64x64" type="image/png">
         <link href="{{ "css/style.css" | absURL }}" rel="stylesheet" type="text/css">
     </head>
 
@@ -16,6 +17,7 @@
             <li><a href="pgp-key.txt"><img src="{{ "images/key.svg" | absURL }}" title="pgp key"/></a></li>
             <li><a href="mailto:{{ .Site.Params.Email }}"><img src="{{"images/email.svg" |  absURL }}" title="mail"/></li>
             <li><a href={{ .Site.Params.Github }}><img src="{{ "images/github.svg" |  absURL }}" title="my repo"/></a></li>
+            <li><a href={{ .Site.Params.Telegram }}><img src="{{ "images/telegram.png" | absURL }}" title="please don't spam me"/></a></li>
         </ul>
     </header>
     {{ end }}
@@ -28,7 +30,7 @@
     
     <footer>
         last updated {{ now | time.Format ":date_long" }}<br/>
-        brought to you by <a href="https://github.com/raphjaph/website">this code</a> 
+        brought to you by <a href="https://github.com/raphjaph/website">this code</a>
     </footer>
 
 </html>
