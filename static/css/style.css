@@ -1,71 +1,3 @@
-/* just playing around: https://brenna.github.io/csshexagon/*/
-.hexagon {
-  position: relative;
-  width: 69px; 
-  height: 39.84px;
-  margin: 19.92px 0;
-  background-image: url(https://raph.8el.eu/images/avatar.jpeg);
-  background-size: auto 79.6743px;
-  background-position: center;
-}
-
-.hexTop,
-.hexBottom {
-  position: absolute;
-  z-index: 1;
-  width: 48.79px;
-  height: 48.79px;
-  overflow: hidden;
-  -webkit-transform: scaleY(0.5774) rotate(-45deg);
-  -ms-transform: scaleY(0.5774) rotate(-45deg);
-  transform: scaleY(0.5774) rotate(-45deg);
-  background: inherit;
-  left: 10.10px;
-}
-
-/*counter transform the bg image on the caps*/
-.hexTop:after,
-.hexBottom:after {
-  content: "";
-  position: absolute;
-  width: 69.0000px;
-  height: 39.83716857408418px;
-  -webkit-transform:  rotate(45deg) scaleY(1.7321) translateY(-19.9186px);
-  -ms-transform:      rotate(45deg) scaleY(1.7321) translateY(-19.9186px);
-  transform:          rotate(45deg) scaleY(1.7321) translateY(-19.9186px);
-  -webkit-transform-origin: 0 0;
-  -ms-transform-origin: 0 0;
-  transform-origin: 0 0;
-  background: inherit;
-}
-
-.hexTop {
-  top: -24.3952px;
-}
-
-.hexTop:after {
-  background-position: center top;
-}
-
-.hexBottom {
-  bottom: -24.3952px;
-}
-
-.hexBottom:after {
-  background-position: center bottom;
-}
-
-.hexagon:after {
-  content: "";
-  position: absolute;
-  top: 0.0000px;
-  left: 0;
-  width: 69.0000px;
-  height: 39.8372px;
-  z-index: 2;
-  background: inherit;
-}
-
 /*How to nest CSS classes?*/
 header {
     display: flex;
@@ -74,8 +6,8 @@ header {
 }
 
 header .avatar {    
-    width: 80px;
-    height: 80px;
+    width: 69px;
+    height: 69px;
     overflow: hidden;
     border-radius: 50%;
 }
@@ -83,8 +15,8 @@ header .avatar {
 header .avatar img {
     width: 100%;
     height: auto;
-    margin-top: -18px;
-    margin-right: -3x;
+    margin-top: -16px;
+    margin-right: -4x;
 }
 
 header h1 {
@@ -166,7 +98,76 @@ footer {
     font: 0.7em/1.2em sans-serif;
 }
 
+
+/* just playing around: https://brenna.github.io/csshexagon/*/
 /*
+.hexagon {
+  position: relative;
+  width: 69px; 
+  height: 39.84px;
+  margin: 19.92px 0;
+  background-image: url(https://raph.8el.eu/images/avatar.jpeg);
+  background-size: auto 79.6743px;
+  background-position: center;
+}
+
+.hexTop,
+.hexBottom {
+  position: absolute;
+  z-index: 1;
+  width: 48.79px;
+  height: 48.79px;
+  overflow: hidden;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  -ms-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background: inherit;
+  left: 10.10px;
+}
+
+.hexTop:after,
+.hexBottom:after {
+  content: "";
+  position: absolute;
+  width: 69.0000px;
+  height: 39.83716857408418px;
+  -webkit-transform:  rotate(45deg) scaleY(1.7321) translateY(-19.9186px);
+  -ms-transform:      rotate(45deg) scaleY(1.7321) translateY(-19.9186px);
+  transform:          rotate(45deg) scaleY(1.7321) translateY(-19.9186px);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  background: inherit;
+}
+
+.hexTop {
+  top: -24.3952px;
+}
+
+.hexTop:after {
+  background-position: center top;
+}
+
+.hexBottom {
+  bottom: -24.3952px;
+}
+
+.hexBottom:after {
+  background-position: center bottom;
+}
+
+.hexagon:after {
+  content: "";
+  position: absolute;
+  top: 0.0000px;
+  left: 0;
+  width: 69.0000px;
+  height: 39.8372px;
+  z-index: 2;
+  background: inherit;
+}
+
+
 img {
     max-width: 80%;
     display: block;
