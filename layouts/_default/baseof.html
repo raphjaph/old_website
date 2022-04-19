@@ -47,10 +47,23 @@
         </a>
 -->
 
+        <script>
+            function getRandomLink() {
+            fetch("https://raph.8el.eu/bookmarks.txt")
+                .then( r => r.text())
+                .then( function(text) {
+                    var lines = text.split("\n");
+                    var randLineNum = Math.floor(Math.random() * lines.length);
+                    var link = lines[randLineNum]
+                    document.getElementById("random-link").setAttribute("href", link)
+                });
+            };
+            getRandomLink();
+        </script>
         <div class="avatar">
-        <a href="/" title="take me somewhere random">
+        <a id="random-link" title="take me somewhere random" target=_blank onclick=getRandomLink()>
                 <img src="{{ "images/avatar.jpeg" | absURL }}"/> 
-            </a>
+        </a>
         </div>
 
     </header>
