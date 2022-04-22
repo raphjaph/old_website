@@ -26,6 +26,7 @@ https://www.openapis.org/
 https://roll.urown.net/about.html
 https://nostr.com/#/settings
 https://handshake.org/
+https://hpbn.co/
 https://veracrypt.fr/en/Downloads.html
 https://github.com/drduh/YubiKey-Guide
 https://cryptobook.nakov.com/symmetric-key-ciphers/cipher-block-modes
@@ -133,6 +134,8 @@ https://roshunpatel.substack.com/p/on-risk-taking
 https://www.alicemaz.com/writing/program.html
 https://danluu.com/teach-debugging/
 https://fiatjaf.com/130cfaed.html
+https://lobste.rs/active
+https://www.uncerto.com/
 https://thevaluable.dev/page/about/
 https://rubin.io/
 https://muldoon.cloud/
@@ -214,6 +217,7 @@ https://mattodell.keybase.pub/#matt-odell
 https://jonatack.github.io/
 https://untappedgrowth.com/decentralizedgrazing-overview/
 https://www.uncerto.com/essays
+https://dunxen.dev/bitcoin/
 http://www.fooledbyrandomness.com/
 https://web.archive.org/web/20100726061952/http://www.fooledbyrandomness.com/favbooks.html
 https://medium.com/the-mission/61-books-nassim-taleb-recommends-you-read-in-his-own-words-fc2e17a7f3c1
