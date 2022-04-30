@@ -6,6 +6,7 @@ http://libgen.rs/
 https://www.youtube.com/watch?v=cwdUfyI-DwQ
 https://searx.unclejim.life/
 https://12ft.io/
+https://learnxinyminutes.com/
 https://anonymousplanet.org/guide.html
 https://www.activism.net/cypherpunk/manifesto.html
 https://protonvpn.com/download-macos
@@ -27,6 +28,7 @@ https://roll.urown.net/about.html
 https://nostr.com/#/settings
 https://handshake.org/
 https://hpbn.co/
+https://jepsen.io/consistency
 https://veracrypt.fr/en/Downloads.html
 https://github.com/drduh/YubiKey-Guide
 https://cryptobook.nakov.com/symmetric-key-ciphers/cipher-block-modes
@@ -37,6 +39,9 @@ https://opencollective.com/how-it-works
 https://dashy.to/
 https://neuron.zettel.page/examples
 https://miniflux.app/index.html
+https://karabiner-elements.pqrs.org/
+https://www.hammerspoon.org/
+https://github.com/d0c-s4vage/lookatme
 https://www.shellscript.sh/philosophy.html
 https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html
 https://github.com/junegunn/fzf
@@ -121,6 +126,7 @@ https://www.keybr.com/
 https://matt.might.net/articles/books-papers-materials-for-graduate-students/#cs
 https://excalidraw.com/
 https://questions.wizardzines.com/
+https://curlconverter.com/
 https://web.stanford.edu/class/cs81n/command.txt
 https://www.forbes.com/sites/michaelshellenberger/2019/05/06/the-reason-renewables-cant-power-modern-civilization-is-because-they-were-never-meant-to/?sh=124b1b89ea2b
 https://medium.com/@francispouliot/controlling-the-narrative-how-defining-problems-and-framing-causal-stories-of-harm-leads-to-4e923db71a36
@@ -136,6 +142,10 @@ https://danluu.com/teach-debugging/
 https://fiatjaf.com/130cfaed.html
 https://lobste.rs/active
 https://www.uncerto.com/
+https://boringml.com/docs/computer-science/hash-aggregate/
+https://wanderers-library.wikidot.com/
+https://www.metafilter.com/about.mefi
+https://www.lesswrong.com/
 https://thevaluable.dev/page/about/
 https://rubin.io/
 https://muldoon.cloud/
@@ -178,6 +188,9 @@ https://jvns.ca/
 https://wizardzines.com/
 https://dave.cheney.net/
 https://fiatjaf.com/
+https://boringml.com/docs/what-is-ml/
+https://www.benkuhn.net/
+https://joeyh.name/
 https://www.math.upenn.edu/~ghrist/research.html
 https://bartoszmilewski.com/
 http://www.jezzamon.com/fourier/index.html
@@ -204,6 +217,7 @@ https://core-econ.org/the-economy/book/text/13.html#134-measuring-the-aggregate-
 https://www.wilmott.com/
 https://www.edge.org/
 https://www.edge.org/conversation/nassim_nicholas_taleb-understanding-is-a-poor-substitute-for-convexity-antifragility
+https://www.conordewey.com/blog/nassim-taleb-starter-pack/
 https://dergigi.com/2021/01/14/bitcoin-is-time/
 http://blas.com/
 https://lightning.engineering/blog
@@ -248,6 +262,7 @@ https://1ml.com/
 https://defillama.com/
 https://www.blocknative.com/gas-estimator
 https://etherscan.io/gastracker
+https://www.3dorderbook.com/
 https://learncryptography.com/mathematics/the-birthday-problem
 https://cryptohack.org/challenges/introduction/
 https://cryptopals.com/sets/1
@@ -299,6 +314,7 @@ https://www.youtube.com/watch?v=qw0NP8EHheI
 https://1ml.com/node/02c16cca44562b590dd279c942200bdccfd4f990c3a69fad620c10ef2f8228eaff
 https://lightningnetwork.plus/
 https://telegra.ph/Awesome-things-you-can-do-on-LN-09-11
+https://standardsats.github.io/
 https://tribes.sphinx.chat/
 https://hub.docker.com/u/lncm
 https://yalls.org/
@@ -389,6 +405,7 @@ https://www.jessicagavin.com/stewing/
 https://www.einfachbacken.de/rezepte/die-beste-vegetarische-gemuesequiche?portions=1
 https://www.lecker.de/blumenkohl-moehren-auflauf-37462.html
 https://zeitung.faz.net/fas/leben/2021-12-26/f27ca7df89d17ddedfa35c79db0bcb3f/?GEPC=s5
+https://www.einfachbacken.de/rezepte/flammkuchenteig-ohne-hefe-schnell-selbst-gemacht?portions=3
 https://melondonkey.shinyapps.io/riskApp/
 https://teropa.info/harmonics-explorer/
 https://p5js.org/
@@ -404,3 +421,7 @@ http://quil.info/
 https://github.com/ScR4tCh/timebox
 https://espanol.lingolia.com/en/grammar/verbs/verbal-periphrasis
 https://espanol.lingolia.com/en/grammar/verbs/verbs-of-becoming
+http://www.nanex.net/aqck2/3581.html
+https://sriramk.com/coldemail
+https://jobs.lever.co/waveapps/f0c03ba3-28d0-4809-8b1d-4718d1617a7a
+https://css-examples.wizardzines.com/
