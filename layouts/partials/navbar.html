@@ -14,10 +14,16 @@
     &bull; <a href="/log/">log</a>
     {{ end }}
 
-    {{ if eq .Section "books" }}
-    &bull; <a>books</a>
+    {{ if eq .Section "bookshelf" }}
+    &bull; <a>bookshelf</a>
     {{ else }}
-    &bull; <a href="/books/">books</a>
+    &bull; <a href="/bookshelf/">bookshelf</a>
+    {{ end }}
+
+    {{ if eq .Section "recipes" }}
+    &bull; <a>recipes</a>
+    {{ else }}
+    &bull; <a href="/recipes/">recipes</a>
     {{ end }}
 </nav>
 <hr/>

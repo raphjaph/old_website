@@ -4,7 +4,7 @@
 {{ .Content }}
 
 <ul class="books" id="books">
-{{ range where .Site.Pages "Section" "books" }}
+{{ range where .Site.Pages "Section" "bookshelf" }}
     {{ $cover := index (.Resources.ByType "image") 0 }}
     {{ if $cover }}
         {{ $cover := $cover.Resize "200x" }}
