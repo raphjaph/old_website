@@ -1,5 +1,15 @@
 {{ define "main" }}
 
 {{ .Content }}
+<form action="https://raph.8el.eu/api/getinvoice?amount=100&description=from-website" method="GET">
+    <input type="amount" placeholder="sats" />
+    <button style="height: 50px" onclick="click_get_invoice()">Request bolt11 invoice</button>
+</form>
+<script>
+    function click_get_invoice() {
+        fetch("https://raph.8el.eu/api/getinvoice")
+            .then( r => )
+    }
+</script>
 
 {{ end }}

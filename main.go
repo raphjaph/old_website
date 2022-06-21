@@ -8,16 +8,21 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 	"strings"
 	"time"
 
 	docopt "github.com/docopt/docopt-go"
+	"github.com/fiatjaf/makeinvoice"
 	"github.com/gorilla/mux"
 )
 
 // TODO: get these from config or environment variable
 const (
-	secret    = "verySecretSecretJzT+pAqbdYMJAWZonC5Z"
+	secret    = "verySecretSecret"
+	rune      = "P9D3vkZZIawOf5YTRSt95Sdj2z9q8HiwuhAvNqaQKQY9MSZtZXRob2Q9aW52b2ljZQ=="
+	lnHost    = "10.13.13.2:9735"
+	lnNodeId  = "02b02f856f28cbe658133008b9dcb9ae2e6c18d27fbe5cd6644b6f13bcb42a269c"
 	address   = "0.0.0.0:3333"
 	staticDir = "/s"
 	authPath  = "/s/books/"
@@ -28,6 +33,7 @@ const USAGE = `website
 Usage:
   website run 
   website new-user <username>
+  website invoice <amount>
 `
 
 var router = mux.NewRouter()
@@ -43,6 +49,13 @@ func main() {
 		runServer()
 	case opts["new-user"].(bool):
 		createUser(opts)
+	case opts["invoice"].(bool):
+		amount, ok := opts["<amount>"].(string)
+		if !ok {
+			fmt.Println("error parsing amount")
+			return
+		}
+		getInvoice(amount, "description")
 	}
 
 	return
@@ -51,6 +64,9 @@ func main() {
 func runServer() {
 	// all requests flow through authentication check and logger
 	router.Use(authAndLogMiddleware)
+
+	api := router.PathPrefix("/api").Subrouter()
+	api.HandleFunc("/getinvoice", GetInvoice)
 
 	router.PathPrefix("/s/").Handler(http.StripPrefix("/s/", http.FileServer(http.Dir(staticDir))))
 	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./public")))
@@ -99,6 +115,48 @@ func authAndLogMiddleware(next http.Handler) http.Handler {
 		next.ServeHTTP(w, req)
 		return
 	})
+}
+
+/*
+	https://raph.8el.eu/api/getinvoice?amount=999&description="invoice from website"
+*/
+func GetInvoice(writer http.ResponseWriter, req *http.Request) {
+	values := req.URL.Query()
+	amount := values.Get("amount")
+	description := values.Get("description")
+
+	bolt11 := getInvoice(amount, description)
+
+	writer.Write([]byte(bolt11))
+	writer.WriteHeader(http.StatusOK)
+}
+
+func getInvoice(amountStr string, description string) string {
+	amount, err := strconv.Atoi(amountStr)
+	if err != nil {
+		fmt.Println("error parsing amount: ", err)
+		return ""
+	}
+
+	lnBackend := makeinvoice.CommandoParams{
+		Rune:   rune,
+		Host:   lnHost,
+		NodeId: lnNodeId,
+	}
+
+	params := makeinvoice.Params{
+		Msatoshi:    int64(amount) * 1000,
+		Backend:     lnBackend,
+		Description: description,
+	}
+
+	bolt11, err := makeinvoice.MakeInvoice(params)
+	if err != nil {
+		fmt.Println(err)
+		return ""
+	}
+
+	return bolt11
 }
 
 // only creates a sort unique key (password) for the user; nothing stored in a database
