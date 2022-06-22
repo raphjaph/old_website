@@ -5,6 +5,7 @@ import (
 	"crypto/sha256"
 	"crypto/subtle"
 	"encoding/hex"
+	"errors"
 	"fmt"
 	"log"
 	"net/http"
@@ -13,8 +14,9 @@ import (
 	"time"
 
 	docopt "github.com/docopt/docopt-go"
-	"github.com/fiatjaf/makeinvoice"
 	"github.com/gorilla/mux"
+	lnsocket "github.com/jb55/lnsocket/go"
+	"github.com/tidwall/gjson"
 )
 
 // TODO: get these from config or environment variable
@@ -29,11 +31,9 @@ const (
 )
 
 const USAGE = `website
-
 Usage:
   website run 
   website new-user <username>
-  website invoice <amount>
 `
 
 var router = mux.NewRouter()
@@ -49,13 +49,6 @@ func main() {
 		runServer()
 	case opts["new-user"].(bool):
 		createUser(opts)
-	case opts["invoice"].(bool):
-		amount, ok := opts["<amount>"].(string)
-		if !ok {
-			fmt.Println("error parsing amount")
-			return
-		}
-		getInvoice(amount, "description")
 	}
 
 	return
@@ -79,6 +72,67 @@ func runServer() {
 	}
 	log.Printf("Listening on %v...\n", address)
 	log.Fatal(srv.ListenAndServe())
+}
+
+/*
+    Old idea:
+	https://raph.8el.eu/api/getinvoice?amount=999&description="invoice from website"
+*/
+func GetInvoice(writer http.ResponseWriter, req *http.Request) {
+	//	values := req.URL.Query()
+	//	amount := values.Get("amount")
+	//	description := values.Get("description")
+
+	invoice, err := lnSocketInvoice()
+	if err != nil {
+		fmt.Println(err)
+		writer.WriteHeader(http.StatusInternalServerError)
+	}
+
+	writer.Write([]byte(invoice))
+	writer.WriteHeader(http.StatusOK)
+}
+
+func lnSocketInvoice() (string, error) {
+	ln := lnsocket.LNSocket{}
+	ln.GenKey()
+
+	err := ln.ConnectAndInit(lnHost, lnNodeId)
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
+	defer ln.Disconnect()
+
+	label := "makeinvoice/" + strconv.FormatInt(time.Now().Unix(), 16)
+	description := "from website tip jar"
+
+	//params := fmt.Sprintf("[\"%dmsat\", \"%s\", \"%s\"]", mSatoshi, label, description)
+	// any amount invoices
+	params := fmt.Sprintf("[\"any\", \"%s\", \"%s\"]", label, description)
+
+	body, err := ln.Rpc(rune, "invoice", params)
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
+
+	resErr := gjson.Get(body, "error")
+	if resErr.Type != gjson.Null {
+		if resErr.Type == gjson.JSON {
+			return "", errors.New(resErr.Get("message").String())
+		} else if resErr.Type == gjson.String {
+			return "", errors.New(resErr.String())
+		}
+		return "", fmt.Errorf("Unknown commando error: '%v'", resErr)
+	}
+
+	invoice := gjson.Get(body, "result.bolt11")
+	if invoice.Type != gjson.String {
+		return "", fmt.Errorf("No bolt11 result found in invoice response, got %v", body)
+	}
+
+	return invoice.String(), nil
 }
 
 func authAndLogMiddleware(next http.Handler) http.Handler {
@@ -115,48 +169,6 @@ func authAndLogMiddleware(next http.Handler) http.Handler {
 		next.ServeHTTP(w, req)
 		return
 	})
-}
-
-/*
-	https://raph.8el.eu/api/getinvoice?amount=999&description="invoice from website"
-*/
-func GetInvoice(writer http.ResponseWriter, req *http.Request) {
-	values := req.URL.Query()
-	amount := values.Get("amount")
-	description := values.Get("description")
-
-	bolt11 := getInvoice(amount, description)
-
-	writer.Write([]byte(bolt11))
-	writer.WriteHeader(http.StatusOK)
-}
-
-func getInvoice(amountStr string, description string) string {
-	amount, err := strconv.Atoi(amountStr)
-	if err != nil {
-		fmt.Println("error parsing amount: ", err)
-		return ""
-	}
-
-	lnBackend := makeinvoice.CommandoParams{
-		Rune:   rune,
-		Host:   lnHost,
-		NodeId: lnNodeId,
-	}
-
-	params := makeinvoice.Params{
-		Msatoshi:    int64(amount) * 1000,
-		Backend:     lnBackend,
-		Description: description,
-	}
-
-	bolt11, err := makeinvoice.MakeInvoice(params)
-	if err != nil {
-		fmt.Println(err)
-		return ""
-	}
-
-	return bolt11
 }
 
 // only creates a sort unique key (password) for the user; nothing stored in a database

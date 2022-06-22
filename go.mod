@@ -6,6 +6,7 @@ require (
 	github.com/docopt/docopt-go v0.0.0-20180111231733-ee0de3bc6815
 	github.com/fiatjaf/makeinvoice v1.4.0
 	github.com/gorilla/mux v1.8.0
+	github.com/jb55/lnsocket/go v0.0.0-20220315220004-e1e6b88a0bfc
 )
 
 require (
@@ -30,7 +31,6 @@ require (
 	github.com/go-errors/errors v1.0.1 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/imroc/req v0.3.0 // indirect
-	github.com/jb55/lnsocket/go v0.0.0-20220315220004-e1e6b88a0bfc // indirect
 	github.com/kkdai/bstream v1.0.0 // indirect
 	github.com/lightninglabs/gozmq v0.0.0-20191113021534-d20a764486bf // indirect
 	github.com/lightninglabs/neutrino v0.13.0 // indirect
