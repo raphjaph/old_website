@@ -18,11 +18,14 @@
 </ul>
 <!-- trying out javascript to shuffle list of books -->
 <script>
-    var books = document.getElementById("books");
-    // Fisher-Yates shuffle
-    for (var i = books.children.length; i >= 0; i--) {
+    function randomizeOrder() {
+        var books = document.getElementById("books");
+        // Fisher-Yates shuffle
+        for (var i = books.children.length; i >= 0; i--) {
             books.appendChild(books.children[Math.random() * i | 0]);
         }
+    }
+    // randomizeOrder()
 </script>
 
 {{ end }}
