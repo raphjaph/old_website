@@ -8,19 +8,19 @@
     <a href="/">home</a>
     {{ end }}
 
-    {{ if eq .Section "log" }}
+    {{ if and (eq .Section "log") (eq .Kind "section") }}
     &bull; <a>log</a>
     {{ else }}
     &bull; <a href="/log/">log</a>
     {{ end }}
-
-    {{ if eq .Section "bookshelf" }}
+    
+    {{ if and (eq .Section "bookshelf") (eq .Kind "section") }}
     &bull; <a>bookshelf</a>
     {{ else }}
     &bull; <a href="/bookshelf/">bookshelf</a>
     {{ end }}
 
-    {{ if eq .Section "recipes" }}
+    {{ if and (eq .Section "recipes") (eq .Kind "section") }}
     &bull; <a>recipes</a>
     {{ else }}
     &bull; <a href="/recipes/">recipes</a>

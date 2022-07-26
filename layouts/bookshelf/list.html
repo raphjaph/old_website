@@ -9,11 +9,7 @@
     {{ if $cover }}
         {{ $cover := $cover.Resize "200x" }}
         <li>
-        {{ if eq .Content "" }}
-        <a>
-        {{ else }}
         <a href="{{ .Permalink }}">
-        {{ end }}
             <img src="{{ $cover.RelPermalink }}">
         </a>
         </li>
