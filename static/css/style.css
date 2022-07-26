@@ -52,6 +52,18 @@ nav {
     text-align: center;
 }
 
+nav a {
+    color: grey;
+}
+
+nav a:visited {
+    color: grey;
+}
+
+nav a:hover {
+    color: red;
+}
+
 body {
     font: 1.1em/1.5em sans-serif;
     max-width: 55em;
