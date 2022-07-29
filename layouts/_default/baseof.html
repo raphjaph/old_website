@@ -14,8 +14,8 @@
     <header>
 
         <div class="infos">
-        <a href="/"><h1>{{ .Site.Params.Author }}</h1></a>
-        <ul>
+            <a href="/"><h1>{{ .Site.Params.Author }}</h1></a>
+            <ul>
             <li>
                 <a href=" {{ .Site.Params.BaseURL }}/41E04F0D.txt">
                     <img src="{{ "images/key.svg" | absURL }}" title="PGP key"/>
@@ -36,26 +36,17 @@
                     <img src="{{ "images/telegram.png" | absURL }}" title="please don't spam me"/>
                 </a>
             </li>
-        </ul>
+            </ul>
         </div>
 
-        <script>
-            function getRandomLink() {
-            fetch("https://raph.8el.eu/bookmarks.txt")
-                .then( r => r.text())
-                .then( function(text) {
-                    var lines = text.split("\n");
-                    var randLineNum = Math.floor(Math.random() * lines.length);
-                    var link = lines[randLineNum]
-                    document.getElementById("random-link").setAttribute("href", link)
-                });
-            };
-            getRandomLink();
-        </script>
         <div class="avatar">
-        <a id="random-link" title="take me somewhere random" target=_blank onclick=getRandomLink()>
+            <a id="random-link" title="take me somewhere random" target=_blank onclick=getRandomLink()>
+
+                {{ with .Resources.GetMatch "images/avatar.jpeg" }}
+                <img src="data:{{ .MediaType }};base64,{{ .Content | base64Encode }}"/> 
+                {{ end }}
                 <img src="{{ "images/avatar.jpeg" | absURL }}"/> 
-        </a>
+            </a>
         </div>
 
     </header>
@@ -73,3 +64,17 @@
     </footer>
 
 </html>
+
+<script>
+    function getRandomLink() {
+        fetch("https://raph.8el.eu/bookmarks.txt")
+            .then( r => r.text())
+            .then( function(text) {
+                var lines = text.split("\n");
+                var randLineNum = Math.floor(Math.random() * lines.length);
+                var link = lines[randLineNum]
+                document.getElementById("random-link").setAttribute("href", link)
+            });
+    };
+    getRandomLink();
+</script>
