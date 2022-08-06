@@ -19,9 +19,9 @@
             fetch("https://raph.8el.eu/api/getinvoice")
                 .then( r => r.text())
                 .then( invoice => { 
-                        console.log(invoice);
+                        console.log(invoice)
 
-                        link = "lightning:" + invoice;
+                        link = "lightning:" + invoice
 
                         qr = new QRCode("qrcode", {
                                 text: link,
@@ -30,37 +30,61 @@
                                 colorDark : "#000000",
                                 colorLight : "#ffffff",
                                 correctLevel : QRCode.CorrectLevel.L
-                            });
+                            })
 
-                        invoiceLink = document.querySelector("#invoice-link");
-                        invoiceLink.href = link ;
+                        invoiceLink = document.querySelector("#invoice-link")
+                        invoiceLink.href = link
 
-                        tipButton = document.getElementById("tip-button");
-                        tipButton.style.display = "none";
+                        tipButton = document.getElementById("tip-button")
+                        tipButton.style.display = "none"
                     })
         };
 
-    async function fetchAndAwaitInvoice() {
+    async function makeRequest(rune, method, params) {
             const LNSocket = await lnsocket_init()
             const ln = LNSocket()
 
             ln.genkey()
-            await ln.connect_and_init("<pubkey>", "ws://<ip-of-proxy-to-cln>")
+            await ln.connect_and_init("<pubkey>", "wss://cln.8el.eu/<lookup-string>")
 
+            const {result} = await ln.rpc({ rune, method, params })
+           
+            console.log(result)
+            ln.disconnect()
+            return result
+        };
+
+    function getAnyInvoice() {
             const rune = "<rune>"
+
             const label = `tips/${new Date().getTime()}`
             const params = {
                     amount_msat: "any",
                     label: label,
                     description: "from website tip jar"
                 }
-
-            const invoice = await ln.rpc({ rune, "invoice", params })
+            
+            invoice = makeRequest(rune, "invoice", params)
+            
             console.log(invoice)
+        }
 
-            const res = await ln.rpc({ rune, "waitinvoice", { label: label } })           
+    function awaitInvoice(label) {
+            const rune = "<rune>"
+
+            res = makeRequest(rune, "waitinvoice", { label })
+            
             console.log(res)
-        };
+        }
+    
+//    async function test() {
+//            const rune = "<getinfo-rune>"
+//
+//            const result = await makeRequest(rune, "getinfo")
+//            console.log(result)
+//        }
+//
+//    test() 
 </script>
 
 {{ end }}
