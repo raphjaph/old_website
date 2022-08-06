@@ -54,14 +54,13 @@
             return result
         };
 
-    function getAnyInvoice() {
+    function getAnyInvoice(label, description) {
             const rune = "<rune>"
 
-            const label = `tips/${new Date().getTime()}`
             const params = {
                     amount_msat: "any",
                     label: label,
-                    description: "from website tip jar"
+                    description: description 
                 }
             
             invoice = makeRequest(rune, "invoice", params)
@@ -76,7 +75,18 @@
             
             console.log(res)
         }
-    
+   
+//    async onClickTipButton() {
+//            const label = `tips/${new Date().getTime()}`
+//            // TODO: get small note from user
+//            description = "from website tip jar"
+//            const invoice = await getAnyInvoice()
+//            
+//            // TODO: display invoice
+//            const awaitPayment = await awaitInvoice(label)
+//            // TODO: parse response 
+//            
+//        }
 //    async function test() {
 //            const rune = "<getinfo-rune>"
 //
