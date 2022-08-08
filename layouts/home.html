@@ -3,98 +3,16 @@
 {{ .Content }}
 
 <div style="text-align: center">
-<button id="tip-button" style="height: 50px;" onClick="getInvoice()">tip me some sats!</button>
+<button id="tip-button" style="height: 50px;" onClick="onClickTipButton()">tip me some sats!</button>
 </div>
 
-<a id="invoice-link" href="" style="display: block;">
-    <div id="qrcode" style="display: flex; justify-content: center; text-align: center;"></div>
+<a id="invoice-link" href="" style="display: block; text-decoration: none; color: black;">
+    <div id="qrcode" style="display: flex; justify-content: center; text-align: center;">
     </div>
 </a>
 
 <script src="/js/qrcode.min.js" ></script>
 <script src="/js/lnsocket.js" ></script>
-<!-- this is horrible! clean up and learn how to write proper javascript -->
-<script>
-    function getInvoice() {
-            fetch("https://raph.8el.eu/api/getinvoice")
-                .then( r => r.text())
-                .then( invoice => { 
-                        console.log(invoice)
-
-                        link = "lightning:" + invoice
-
-                        qr = new QRCode("qrcode", {
-                                text: link,
-                                width: 256,
-                                height: 256,
-                                colorDark : "#000000",
-                                colorLight : "#ffffff",
-                                correctLevel : QRCode.CorrectLevel.L
-                            })
-
-                        invoiceLink = document.querySelector("#invoice-link")
-                        invoiceLink.href = link
-
-                        tipButton = document.getElementById("tip-button")
-                        tipButton.style.display = "none"
-                    })
-        };
-
-    async function makeRequest(rune, method, params) {
-            const LNSocket = await lnsocket_init()
-            const ln = LNSocket()
-
-            ln.genkey()
-            await ln.connect_and_init("<pubkey>", "wss://cln.8el.eu/<lookup-string>")
-
-            const {result} = await ln.rpc({ rune, method, params })
-           
-            console.log(result)
-            ln.disconnect()
-            return result
-        };
-
-    function getAnyInvoice(label, description) {
-            const rune = "<rune>"
-
-            const params = {
-                    amount_msat: "any",
-                    label: label,
-                    description: description 
-                }
-            
-            invoice = makeRequest(rune, "invoice", params)
-            
-            console.log(invoice)
-        }
-
-    function awaitInvoice(label) {
-            const rune = "<rune>"
-
-            res = makeRequest(rune, "waitinvoice", { label })
-            
-            console.log(res)
-        }
-   
-//    async onClickTipButton() {
-//            const label = `tips/${new Date().getTime()}`
-//            // TODO: get small note from user
-//            description = "from website tip jar"
-//            const invoice = await getAnyInvoice()
-//            
-//            // TODO: display invoice
-//            const awaitPayment = await awaitInvoice(label)
-//            // TODO: parse response 
-//            
-//        }
-//    async function test() {
-//            const rune = "<getinfo-rune>"
-//
-//            const result = await makeRequest(rune, "getinfo")
-//            console.log(result)
-//        }
-//
-//    test() 
-</script>
+<script src="/js/tips.js" ></script>
 
 {{ end }}
