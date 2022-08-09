@@ -70,9 +70,6 @@ async function onClickTipButton() {
 
 }
 
-
-//
-//
 //    function getInvoiceThroughAPI() {
 //            fetch("https://raph.8el.eu/api/getinvoice")
 //                .then( r => r.text())
