@@ -12,6 +12,7 @@ import (
 	"github.com/gorilla/mux"
 	lnsocket "github.com/jb55/lnsocket/go"
 	"github.com/tidwall/gjson"
+	"github.com/tidwall/sjson"
 )
 
 func handleLNAddress(writer http.ResponseWriter, req *http.Request) {
@@ -19,13 +20,19 @@ func handleLNAddress(writer http.ResponseWriter, req *http.Request) {
 
 	// 1. get the info
 	if amount := req.URL.Query().Get("amount"); amount == "" {
+
+		metadata, _ := sjson.Set("[]", "0.0", "text/identifier")
+		metadata, _ = sjson.Set(metadata, "0.1", username+"@"+domain)
+
+		metadata, _ = sjson.Set(metadata, "1.0", "text/plain")
+		metadata, _ = sjson.Set(metadata, "1.1", "Satoshis to "+username+"@"+domain+".")
+
 		json.NewEncoder(writer).Encode(lnurl.LNURLPayResponse1{
-			LNURLResponse: lnurl.LNURLResponse{Status: "OK"},
-			// Callback:       "https://raph.8el.eu/api/getinvoice",
-			Callback:        fmt.Sprintf("https://raph.8el.eu/.well-known/lnurlp/%s", username),
+			LNURLResponse:   lnurl.LNURLResponse{Status: "OK"},
+			Callback:        fmt.Sprintf("https://%s/.well-known/lnurlp/%s", domain, username),
 			MinSendable:     1000,
 			MaxSendable:     1000000000,
-			EncodedMetadata: "",
+			EncodedMetadata: metadata,
 			Tag:             "payRequest",
 		})
 		// 2. get the invoice

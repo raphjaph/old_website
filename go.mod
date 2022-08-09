@@ -7,7 +7,8 @@ require (
 	github.com/fiatjaf/go-lnurl v1.0.0
 	github.com/gorilla/mux v1.8.0
 	github.com/jb55/lnsocket/go v0.0.0-20220315220004-e1e6b88a0bfc
-	github.com/tidwall/gjson v1.8.1
+	github.com/tidwall/gjson v1.14.2
+	github.com/tidwall/sjson v1.2.5
 )
 
 require (
@@ -35,8 +36,8 @@ require (
 	github.com/lightningnetwork/lnd/queue v1.1.0 // indirect
 	github.com/lightningnetwork/lnd/ticker v1.1.0 // indirect
 	github.com/miekg/dns v1.1.43 // indirect
-	github.com/tidwall/match v1.0.3 // indirect
-	github.com/tidwall/pretty v1.1.0 // indirect
+	github.com/tidwall/match v1.1.1 // indirect
+	github.com/tidwall/pretty v1.2.0 // indirect
 	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
 	golang.org/x/net v0.0.0-20210913180222-943fd674d43e // indirect
 	golang.org/x/sys v0.0.0-20210915083310-ed5796bab164 // indirect

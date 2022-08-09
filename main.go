@@ -16,6 +16,7 @@ const (
 	lnHost    = "10.13.13.2:9735"
 	lnNodeId  = "02b02f856f28cbe658133008b9dcb9ae2e6c18d27fbe5cd6644b6f13bcb42a269c"
 	address   = "0.0.0.0:3333"
+	domain    = "raph.8el.eu"
 	staticDir = "/s"
 	authPath  = "/s/books/"
 )
