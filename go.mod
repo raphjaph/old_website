@@ -4,9 +4,10 @@ go 1.17
 
 require (
 	github.com/docopt/docopt-go v0.0.0-20180111231733-ee0de3bc6815
-	github.com/fiatjaf/makeinvoice v1.4.0
+	github.com/fiatjaf/go-lnurl v1.0.0
 	github.com/gorilla/mux v1.8.0
 	github.com/jb55/lnsocket/go v0.0.0-20220315220004-e1e6b88a0bfc
+	github.com/tidwall/gjson v1.8.1
 )
 
 require (
@@ -25,12 +26,7 @@ require (
 	github.com/btcsuite/websocket v0.0.0-20150119174127-31079b680792 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/decred/dcrd/lru v1.0.0 // indirect
-	github.com/fiatjaf/eclair-go v0.2.1 // indirect
-	github.com/fiatjaf/lightningd-gjson-rpc v1.4.0 // indirect
-	github.com/fiatjaf/ln-decodepay v1.0.0 // indirect
 	github.com/go-errors/errors v1.0.1 // indirect
-	github.com/gorilla/websocket v1.4.2 // indirect
-	github.com/imroc/req v0.3.0 // indirect
 	github.com/kkdai/bstream v1.0.0 // indirect
 	github.com/lightninglabs/gozmq v0.0.0-20191113021534-d20a764486bf // indirect
 	github.com/lightninglabs/neutrino v0.13.0 // indirect
@@ -38,12 +34,9 @@ require (
 	github.com/lightningnetwork/lnd/clock v1.1.0 // indirect
 	github.com/lightningnetwork/lnd/queue v1.1.0 // indirect
 	github.com/lightningnetwork/lnd/ticker v1.1.0 // indirect
-	github.com/lnpay/lnpay-go v1.1.0 // indirect
 	github.com/miekg/dns v1.1.43 // indirect
-	github.com/tidwall/gjson v1.8.1 // indirect
 	github.com/tidwall/match v1.0.3 // indirect
 	github.com/tidwall/pretty v1.1.0 // indirect
-	github.com/tidwall/sjson v1.1.7 // indirect
 	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
 	golang.org/x/net v0.0.0-20210913180222-943fd674d43e // indirect
 	golang.org/x/sys v0.0.0-20210915083310-ed5796bab164 // indirect
