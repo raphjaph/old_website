@@ -2,10 +2,11 @@
 <html lang="en">
     {{ block "header" . }}
     <head>
-        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content={{ .Site.Params.Author }}>
         <meta name="description" content={{ .Site.Params.Description }}>
+        <meta name="lightning" content="lnurlp:raphjaph@lntxbot.com"/>
+        <meta property="og:image" content="h{{ "images/t-rex.png" | absURL }}" />
         <title>raphael</title>        
         <link rel="icon" href="{{ "images/t-rex.png" | absURL }}" type="image/png">
         <link rel="stylesheet" href="{{ "css/style.css" | absURL }}" type="text/css">
