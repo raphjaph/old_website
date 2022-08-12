@@ -37,13 +37,18 @@ function getInfo() {
 }
 
 async function onClickTipButton() {
+  const tipButton = document.querySelector(".button")
+  tipButton.style.color = "transparent"
+  tipButton.classList.add("button--loading")
+  
   const label = `tips/${new Date().getTime()}`
 
   // TODO: get small note from user
-  description = "from website tip jar"
+  description = prompt("Leave a note!", "")
+
 
   const invoice = await getInvoice(label, description)
-
+ 
   const link = "LIGHTNING:" + invoice.bolt11.toUpperCase()
   qr = new QRCode("qrcode", {
     text: link,
@@ -57,9 +62,7 @@ async function onClickTipButton() {
   invoiceLink = document.querySelector("#invoice-link")
   invoiceLink.href = link
 
-  tipButton = document.getElementById("tip-button")
   tipButton.style.display = "none"
-
 
   const paid = await waitInvoice(label)
   if (paid.status === "paid") {
