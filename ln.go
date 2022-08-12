@@ -12,29 +12,31 @@ import (
 	"github.com/gorilla/mux"
 	lnsocket "github.com/jb55/lnsocket/go"
 	"github.com/tidwall/gjson"
-	"github.com/tidwall/sjson"
 )
 
 func handleLNAddress(writer http.ResponseWriter, req *http.Request) {
 	username := mux.Vars(req)["username"]
 
+	label := username + "@" + domain + "/" + strconv.FormatInt(time.Now().Unix(), 16)
+
+	// minimum of info needed for ln address
+	metadata := make([]interface{}, 0, 5)
+	metadata = append(metadata, []string{"text/plain", "sending sats"})
+	metadata = append(metadata, []string{"text/identifier", username + "@" + domain})
+
+	enc, _ := json.Marshal(metadata)
+	stringMetadata := string(enc)
+
 	// 1. get the info
 	if amount := req.URL.Query().Get("amount"); amount == "" {
-
-		metadata, _ := sjson.Set("[]", "0.0", "text/identifier")
-		metadata, _ = sjson.Set(metadata, "0.1", username+"@"+domain)
-
-		metadata, _ = sjson.Set(metadata, "1.0", "text/plain")
-		metadata, _ = sjson.Set(metadata, "1.1", "Satoshis to "+username+"@"+domain+".")
-
 		json.NewEncoder(writer).Encode(lnurl.LNURLPayResponse1{
-			LNURLResponse:   lnurl.LNURLResponse{Status: "OK"},
-			Callback:        fmt.Sprintf("https://%s/.well-known/lnurlp/%s", domain, username),
 			MinSendable:     1000,
 			MaxSendable:     1000000000,
-			EncodedMetadata: metadata,
 			Tag:             "payRequest",
+			EncodedMetadata: stringMetadata,
+			Callback:        fmt.Sprintf("https://%s/.well-known/lnurlp/%s", domain, username),
 		})
+
 		// 2. get the invoice
 	} else {
 		msat, err := strconv.Atoi(amount)
@@ -43,9 +45,7 @@ func handleLNAddress(writer http.ResponseWriter, req *http.Request) {
 			return
 		}
 
-		label := "lnAddress/" + strconv.FormatInt(time.Now().Unix(), 16)
-		description := "from LN Address"
-		bolt11, err := lnSocketInvoice(msat, label, description)
+		bolt11, err := lnSocketInvoice(msat, label, stringMetadata, true)
 		if err != nil {
 			json.NewEncoder(writer).Encode(
 				lnurl.ErrorResponse("failed to create invoice: " + err.Error()))
@@ -53,16 +53,14 @@ func handleLNAddress(writer http.ResponseWriter, req *http.Request) {
 		}
 
 		json.NewEncoder(writer).Encode(lnurl.LNURLPayResponse2{
-			LNURLResponse: lnurl.LNURLResponse{Status: "OK"},
-			SuccessAction: lnurl.Action("Payment received!", ""),
-			Routes:        make([][]lnurl.RouteInfo, 0),
 			PR:            bolt11,
-			Disposable:    lnurl.FALSE,
+			Routes:        make([][]lnurl.RouteInfo, 0),
+			SuccessAction: lnurl.Action("magic internet money ftw ⚡️", ""),
 		})
 	}
 }
 
-func lnSocketInvoice(msatoshi int, label string, description string) (string, error) {
+func lnSocketInvoice(msatoshi int, label string, description string, useDescHash bool) (string, error) {
 	ln := lnsocket.LNSocket{}
 	ln.GenKey()
 
@@ -73,15 +71,26 @@ func lnSocketInvoice(msatoshi int, label string, description string) (string, er
 	}
 	defer ln.Disconnect()
 
-	// any amount invoices
-	//params := fmt.Sprintf("[\"any\", \"%s\", \"%s\"]", label, description)
-	params := fmt.Sprintf("[\"%d\", \"%s\", \"%s\"]", msatoshi, label, description)
+	params := map[string]interface{}{
+		"msatoshi":    msatoshi,
+		"label":       label,
+		"description": description,
+	}
+	if useDescHash {
+		params["deschashonly"] = true
+	}
 
-	body, err := ln.Rpc(rune, "invoice", params)
+	json, _ := json.Marshal(params)
+	stringParams := string(json)
+
+	body, err := ln.Rpc(rune, "invoice", stringParams)
 	if err != nil {
 		fmt.Println(err)
 		return "", err
+
 	}
+
+	fmt.Println(body)
 
 	resErr := gjson.Get(body, "error")
 	if resErr.Type != gjson.Null {

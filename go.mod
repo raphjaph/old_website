@@ -8,7 +8,6 @@ require (
 	github.com/gorilla/mux v1.8.0
 	github.com/jb55/lnsocket/go v0.0.0-20220315220004-e1e6b88a0bfc
 	github.com/tidwall/gjson v1.14.2
-	github.com/tidwall/sjson v1.2.5
 )
 
 require (
