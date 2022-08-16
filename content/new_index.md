@@ -6,6 +6,8 @@ My main interests lie in distributed systems, applied cryptography and financial
 So naturally I've gravitated towards bitcoin and the lightning network. 
 I run a bitcoin and lightning node and have contributed to [things](https://github.com/raphjaph/satdress) on the periphery.
 
+- The openness of that space has really astonished me since you can look under the hood and try out stuff completely permissionlessly.
+- This stands in stark contrast to the opaqueness of normal financial markets.
 - In contrast to the opaqueness of normal financial markets all these open source alternatives 
 - Long term we'll have to see if the incentives holding up these systems work
 - open a channel with me:
@@ -20,20 +22,6 @@ The internet is all about linking content together so I hope this website can be
 This site points to all sorts of stuff about me. 
 If I get intriguing enough content on here some links might some day point here in the future.
 Click around a bit and you'll find some neat internet nuggets ;)
-
-
-
-I'm currently still a student at the Technical University of Munich studying Computer Science.
-My main interests lie in distributed systems, applied cryptography and financial markets.
-So naturally I&rsquo;ve gravitated towards bitcoin and especially the lightning network.
-I run a bitcoin and lightning node and have contributed to <a href="https://github.com/raphjaph">things</a> on the periphery.
-The openness of that space has really astonished me since you can look under the hood and try out stuff completely permissionlessly.
-This stands in stark contrast to the opaqueness of normal financial markets.
-
-The internet is all about linking content together so I hope this website can be part of that process.
-This site points to all sorts of stuff about me.
-If I get intriguing enough content onto this digital index some links might point here in the future.
-Click around a bit and you&rsquo;ll find some neat internet nuggets ;)
 
 
 

@@ -46,10 +46,9 @@ async function onClickTipButton() {
   // TODO: get small note from user
   description = prompt("Leave a note!", "")
 
-
   const invoice = await getInvoice(label, description)
  
-  const link = "LIGHTNING:" + invoice.bolt11.toUpperCase()
+  const link = "lightning:" + invoice.bolt11
   qr = new QRCode("qrcode", {
     text: link,
     width: 256,
