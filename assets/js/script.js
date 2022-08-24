@@ -5,7 +5,9 @@ function getRandomLink() {
             var lines = text.split("\n");
             var randLineNum = Math.floor(Math.random() * lines.length);
             var link = lines[randLineNum]
-            document.getElementById("random-link").setAttribute("href", link)
+            document.querySelectorAll("#random-link").forEach(element => {
+                element.setAttribute("href", link);
+            })
         });
 };
 getRandomLink();
