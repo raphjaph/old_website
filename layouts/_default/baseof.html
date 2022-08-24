@@ -6,7 +6,7 @@
         <meta name="author" content={{ .Site.Params.Author }}>
         <meta name="description" content={{ .Site.Params.Description }}>
         <meta name="lightning" content="lnurlp:raphjaph@lntxbot.com"/>
-        <meta property="og:image" content="h{{ "images/t-rex.png" | absURL }}" />
+        <meta property="og:image" content="{{ "images/favicon.png" | absURL }}" />
         <title>raphael</title>        
         <link rel="icon" href="{{ "images/favicon.png" | absURL }}" type="image/png">
         <link rel="stylesheet" href="{{ "css/style.css" | absURL }}" type="text/css">
@@ -66,16 +66,5 @@
 
 </html>
 
-<script>
-    function getRandomLink() {
-        fetch("https://raph.8el.eu/bookmarks.txt")
-            .then( r => r.text())
-            .then( function(text) {
-                var lines = text.split("\n");
-                var randLineNum = Math.floor(Math.random() * lines.length);
-                var link = lines[randLineNum]
-                document.getElementById("random-link").setAttribute("href", link)
-            });
-    };
-    getRandomLink();
-</script>
+<script src="/js/scripts.js" ></script>
+
