@@ -73,7 +73,7 @@ async function onClickTipButton() {
 }
 
 //    function getInvoiceThroughAPI() {
-//            fetch("https://raph.8el.eu/api/getinvoice")
+//            fetch("https://raph.ee/api/getinvoice")
 //                .then( r => r.text())
 //                .then( invoice => { 
 //                        console.log(invoice)

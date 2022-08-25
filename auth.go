@@ -13,7 +13,15 @@ import (
 	docopt "github.com/docopt/docopt-go"
 )
 
-func authAndLogMiddleware(next http.Handler) http.Handler {
+func logMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
+		log.Println(req.URL)
+		next.ServeHTTP(w, req)
+		return
+	})
+}
+
+func authMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		// TODO: rate limit
 		// only authenticate path to the actual book files
@@ -38,9 +46,6 @@ func authAndLogMiddleware(next http.Handler) http.Handler {
 			w.Header().Set("WWW-Authenticate", `Basic realm="restricted", charset="UTF-8"`)
 			http.Error(w, "Unauthorized", http.StatusUnauthorized)
 			return
-		} else {
-			// TODO: some logging?
-			log.Println(req.URL)
 		}
 
 		// serve next if not trying to access /books/

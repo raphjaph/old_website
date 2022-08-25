@@ -1,5 +1,5 @@
 function getRandomLink() {
-    fetch("https://raph.8el.eu/bookmarks.txt")
+    fetch("https://raph.ee/bookmarks.txt")
         .then( r => r.text())
         .then( function(text) {
             var lines = text.split("\n");
