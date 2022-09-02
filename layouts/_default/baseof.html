@@ -42,11 +42,9 @@
 
         <div class="avatar">
             <a id="random-link" title="take me somewhere random" target=_blank onclick=getRandomLink()>
-
-                {{ with .Resources.GetMatch "images/avatar.jpeg" }}
-                <img src="data:{{ .MediaType }};base64,{{ .Content | base64Encode }}"/> 
-                {{ end }}
-                <img src="{{ "images/avatar.jpeg" | absURL }}"/> 
+                {{ $image := resources.Get "images/avatar.jpeg" }}
+                {{ $image :=  $image.Resize "100x icon q50" }}
+                <img src="{{ $image.RelPermalink }}"/> 
             </a>
         </div>
 
