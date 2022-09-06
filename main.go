@@ -10,6 +10,7 @@ import (
 )
 
 // TODO: get these from config or environment variable
+// test
 const (
 	secret    = "verySecretSecret"
 	rune      = "P9D3vkZZIawOf5YTRSt95Sdj2z9q8HiwuhAvNqaQKQY9MSZtZXRob2Q9aW52b2ljZQ=="
