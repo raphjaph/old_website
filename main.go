@@ -10,6 +10,7 @@ import (
 )
 
 // TODO: get these from config or environment variable
+// test
 const (
 	secret    = "verySecretSecret"
 	address   = "0.0.0.0:3333"
