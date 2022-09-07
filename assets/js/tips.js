@@ -13,7 +13,7 @@ async function makeRequest(rune, method, params) {
 };
 
 function getInvoice(label, description) {
-  const rune = "DG2_hQywgzXPdJlJoq64hdWhIRwCSvesoWLSZeZ945Q9OSZtZXRob2Q9aW52b2ljZQ==" 
+  const rune = "XudIsJ_EvJuSFfjB_NsnPvjl3jL8pDxOobaBuPXcbs89MjAmbWV0aG9kPWludm9pY2UmcmF0ZT0xMA==" 
 
   const params = {
     msatoshi: "any",

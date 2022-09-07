@@ -12,9 +12,6 @@ import (
 // TODO: get these from config or environment variable
 const (
 	secret    = "verySecretSecret"
-	rune      = "P9D3vkZZIawOf5YTRSt95Sdj2z9q8HiwuhAvNqaQKQY9MSZtZXRob2Q9aW52b2ljZQ=="
-	lnHost    = "10.13.13.2:9735"
-	lnNodeId  = "02b02f856f28cbe658133008b9dcb9ae2e6c18d27fbe5cd6644b6f13bcb42a269c"
 	address   = "0.0.0.0:3333"
 	domain    = "raph.ee"
 	staticDir = "/s"

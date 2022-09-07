@@ -14,6 +14,12 @@ import (
 	"github.com/tidwall/gjson"
 )
 
+const (
+	rune     = "P9D3vkZZIawOf5YTRSt95Sdj2z9q8HiwuhAvNqaQKQY9MSZtZXRob2Q9aW52b2ljZQ=="
+	lnHost   = "10.13.13.2:9735"
+	lnNodeId = "02b02f856f28cbe658133008b9dcb9ae2e6c18d27fbe5cd6644b6f13bcb42a269c"
+)
+
 func handleLNAddress(writer http.ResponseWriter, req *http.Request) {
 	username := mux.Vars(req)["username"]
 
@@ -60,7 +66,7 @@ func handleLNAddress(writer http.ResponseWriter, req *http.Request) {
 	}
 }
 
-func lnSocketInvoice(msatoshi int, label string, description string, useDescHash bool) (string, error) {
+func lnSocketInvoice(amount_msat int, label string, description string, useDescHash bool) (string, error) {
 	ln := lnsocket.LNSocket{}
 	ln.GenKey()
 
@@ -72,7 +78,7 @@ func lnSocketInvoice(msatoshi int, label string, description string, useDescHash
 	defer ln.Disconnect()
 
 	params := map[string]interface{}{
-		"msatoshi":    msatoshi,
+		"amount_msat": amount_msat,
 		"label":       label,
 		"description": description,
 	}
@@ -82,6 +88,8 @@ func lnSocketInvoice(msatoshi int, label string, description string, useDescHash
 
 	json, _ := json.Marshal(params)
 	stringParams := string(json)
+
+	fmt.Println(stringParams)
 
 	body, err := ln.Rpc(rune, "invoice", stringParams)
 	if err != nil {
