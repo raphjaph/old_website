@@ -38,10 +38,12 @@ I follow Lightning Network development the closest and run a small bitcoin and
 lightning node.
 It's fun to program permissionlessly on top of Bitcoin and making magic internet 
 money the default currency of the internet. 
+<!---
 If you want to help me with some of my server costs or buy me a coffee, you can 
 send me some sats to my lightning address 
 (<a href=lightning:sats@raph.ee>sats@raph.ee</a>) or press the button below to 
 get an invoice directly from my node.
+--->
 </p>
 
 #### About Site 
